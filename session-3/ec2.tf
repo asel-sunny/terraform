@@ -8,6 +8,9 @@ resource "aws_instance" "main" {
   }
 }
 
+
+
+
 # aws_instance = first_label, defined by terraform the type of resource
 # main = second_label, logical name or logical id for the resource . You can have any name, must be unique.
 # ami , instance_type = arguments, defined by terraform
