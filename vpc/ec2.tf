@@ -5,7 +5,7 @@ resource "aws_instance" "ec2-tf" {
   subnet_id = aws_subnet.pub-sub1.id
   associate_public_ip_address = true
   key_name = "mac-new-personal"
-  user_data = "${file("/Users/aselnazarova/terraform/vpc/userdata1.sh")}"
+  user_data = "${file("userdata1.sh")}"
 #   user_data = <<-EOF
 #    #!/bin/bash
 #    sudo dnf install httpd -y
