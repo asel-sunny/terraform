@@ -1,10 +1,16 @@
 resource "aws_instance" "main" {
+  #provider = aws.ohio
+  count = 3
   ami           = "ami-0440d3b780d96b29d"
   instance_type = "t2.micro"
   vpc_security_group_ids = [ aws_security_group.main.id ]
   tags = {
     Name = "${var.env}-instance", 
     Environment = var.env  # var.variable_name referencing from variables.tf
+  }
+
+  lifecycle {
+    create_before_destroy = true
   }
 }
 

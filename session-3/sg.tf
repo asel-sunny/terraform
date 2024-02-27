@@ -8,11 +8,12 @@ resource "aws_security_group" "main" {
 }
 
 resource "aws_vpc_security_group_ingress_rule" "main" {
+  count = length(var.ports)  # length of the number of ports 
   security_group_id = aws_security_group.main.id
-  cidr_ipv4         = "0.0.0.0/0"
-  from_port         = 443
+  cidr_ipv4         = element(var.cidr_blocks, count.index)
+  from_port         = element(var.ports, count.index )
   ip_protocol       = "tcp"
-  to_port           = 443
+  to_port           = element(var.ports, count.index )
 }
 
 
