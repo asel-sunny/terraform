@@ -45,14 +45,7 @@ resource "aws_security_group_rule" "egress_sg-alb" {
   source_security_group_id = aws_security_group.sg-ec2.id
 }
 
-# resource "aws_security_group_rule" "egress_sg-alb_health_check" {
-#   type                     = "egress"
-#   from_port                = 8081
-#   to_port                  = 8081
-#   protocol                 = "tcp"
-#   security_group_id        = aws_security_group.sg-alb.id
-#   source_security_group_id = aws_security_group.sg-ec2.id
-# }
+
 
 
 
