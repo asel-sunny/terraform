@@ -58,8 +58,8 @@ resource "aws_lb" "my_app_launch" {
   security_groups    = [aws_security_group.sg-alb.id]
 
   subnets = [
-    aws_default_subnet.pri-sub1.id,
-    aws_default_subnet.pri-sub2.id
+    aws_default_subnet.pub-sub1.id,
+    aws_default_subnet.pub-sub2.id
   ]
 }
 
