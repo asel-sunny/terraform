@@ -16,16 +16,16 @@ resource "aws_lb_target_group" "my_app_launch" {
   target_type = "instance"
   tags        = local.common_tags
 
-  health_check {
-    enabled             = true
-    port                = 8081
-    interval            = 30
-    protocol            = "HTTP"
-    path                = "/"
-    matcher             = "200"
-    healthy_threshold   = 2
-    unhealthy_threshold = 2
-  }
+#   health_check {
+#     enabled             = true
+#     port                = 8081
+#     interval            = 30
+#     protocol            = "HTTP"
+#     path                = "/"
+#     matcher             = "200"
+#     healthy_threshold   = 2
+#     unhealthy_threshold = 2
+#   }
 }
 
 resource "aws_autoscaling_group" "my_app_launch" {

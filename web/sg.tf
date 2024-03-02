@@ -18,14 +18,14 @@ resource "aws_security_group_rule" "ingress_sg-ec2-alb" {
   source_security_group_id = aws_security_group.sg-alb.id
 }
 
-resource "aws_security_group_rule" "ingress_sg-ec2_health_check" {
-  type                     = "ingress"
-  from_port                = 8081
-  to_port                  = 8081
-  protocol                 = "tcp"
-  security_group_id        = aws_security_group.sg-ec2.id
-  source_security_group_id = aws_security_group.sg-alb.id
-}
+# resource "aws_security_group_rule" "ingress_sg-ec2_health_check" {
+#   type                     = "ingress"
+#   from_port                = 8081
+#   to_port                  = 8081
+#   protocol                 = "tcp"
+#   security_group_id        = aws_security_group.sg-ec2.id
+#   source_security_group_id = aws_security_group.sg-alb.id
+# }
 
 resource "aws_security_group_rule" "ingress_sg-alb" {
   type              = "ingress"
