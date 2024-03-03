@@ -1,3 +1,29 @@
+variable "target_type" {
+  type    = string
+  default = "instance"
+}
+
+variable "health_check_type" {
+  type    = string
+  default = "ELB"
+}
+
+variable "min_size" {
+  type    = string
+  default = "1"
+
+}
+
+variable "max_size" {
+  type    = string
+  default = "3"
+}
+
+variable "desired_capacity" {
+  type    = string
+  default = "1"
+
+}
 variable "app_name" {
   type    = string
   default = "my-app"
@@ -91,35 +117,22 @@ variable "extra_tags" {
   ]
 }
 
+variable "default_east-1a" {
+  type    = string
+  default = "subnet-53ff7c0f"
+}
 
-# variable "pub-sub1-cidr" {
-#     type = string
-#     default = "172.31.0.0/26"
+variable "default_east-1b" {
+  type    = string
+  default = "subnet-05de5862"
+}
 
-# }
+variable "domain_name" {
+  type = string
+  default = "aselicloud.net"
+}
 
-# variable "pub-sub2-cidr" {
-#     type = string
-#     default = "172.31.0.64/26"
-
-# }
-
-
-# variable "pri-sub1-cidr" {
-#     type = string
-#     default = "172.31.0.192/26"
-
-# }
-
-# variable "pri-sub2-cidr" {
-#     type = string
-#     default = "172.31.1.0/26"
-
-# }
-
-# variable "ports" {
-#   type        = list(number)
-#   description = "these are port numbers for the instance"
-#   default     = [80, 22, 3306, 53]
-#   # even though numbers dont match cidr blocks, it will take new ports and again loop cidr blocks from the start
-# }
+variable "record_name" {
+  type = string
+  default = "www"
+}
