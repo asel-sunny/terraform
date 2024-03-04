@@ -39,6 +39,15 @@ resource "aws_security_group_rule" "ingress_sg-alb" {
   cidr_blocks       = ["0.0.0.0/0"]
 }
 
+resource "aws_security_group_rule" "ingress_sg-alb2" {
+  type              = "ingress"
+  from_port         = 443
+  to_port           = 443
+  protocol          = "tcp"
+  security_group_id = aws_security_group.sg-alb.id
+  cidr_blocks       = ["0.0.0.0/0"]
+}
+
 resource "aws_security_group_rule" "egress_sg-alb2" {
   type              = "egress"
   from_port         = 0

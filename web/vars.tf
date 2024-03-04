@@ -128,11 +128,11 @@ variable "default_east-1b" {
 }
 
 variable "domain_name" {
-  type = string
+  type    = string
   default = "aselicloud.net"
 }
 
 variable "record_name" {
-  type = string
+  type    = string
   default = "www"
 }

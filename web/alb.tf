@@ -19,13 +19,43 @@ resource "aws_lb" "my_app_launch" {
   ]
 }
 
-resource "aws_lb_listener" "my_app_launch" {
+# resource "aws_lb_listener" "my_app_launch" {
+#   load_balancer_arn = aws_lb.my_app_launch.arn
+#   port              = "80"
+#   protocol          = "HTTP"
+
+#   default_action {
+#     type             = "forward"
+#     target_group_arn = aws_lb_target_group.my_app_launch.arn
+#   }
+# }
+
+resource "aws_lb_listener" "my_app_tls" {
   load_balancer_arn = aws_lb.my_app_launch.arn
-  port              = "80"
-  protocol          = "HTTP"
+  port              = "443"
+  protocol          = "HTTPS"
+  certificate_arn   = aws_acm_certificate.acm.arn
 
   default_action {
     type             = "forward"
     target_group_arn = aws_lb_target_group.my_app_launch.arn
   }
+
+  depends_on = [aws_acm_certificate_validation.acm_validation]
+}
+
+resource "aws_lb_listener" "my_app_http" {
+  load_balancer_arn = aws_lb.my_app_launch.arn
+  port              = "80"
+  protocol          = "HTTP"
+  
+    default_action {
+      type = "redirect"
+
+      redirect {
+        port = "443"
+        protocol = "HTTPS"
+        status_code = "HTTP_301"
+      }
+    }
 }
