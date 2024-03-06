@@ -42,6 +42,7 @@ resource "aws_lb_listener" "my_app_tls" {
   port              = "443"
   protocol          = "HTTPS"
   certificate_arn   = aws_acm_certificate.acm.arn
+  tags = local.common_tags
 
   default_action {
     type             = "forward"
@@ -56,6 +57,7 @@ resource "aws_lb_listener" "my_app_http" {
   load_balancer_arn = aws_lb.my_app_launch.arn
   port              = "80"
   protocol          = "HTTP"
+  tags = local.common_tags
 
     default_action {
       type = "redirect"
