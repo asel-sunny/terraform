@@ -16,7 +16,7 @@ resource "aws_lb" "my_app_launch" {
   internal           = false
   load_balancer_type = "application"
   security_groups    = [aws_security_group.sg-alb.id]
-  tags = local.common_tags
+  tags               = local.common_tags
 
   subnets = [
     aws_default_subnet.pub-sub1.id,
@@ -42,7 +42,7 @@ resource "aws_lb_listener" "my_app_tls" {
   port              = "443"
   protocol          = "HTTPS"
   certificate_arn   = aws_acm_certificate.acm.arn
-  tags = local.common_tags
+  tags              = local.common_tags
 
   default_action {
     type             = "forward"
@@ -57,15 +57,15 @@ resource "aws_lb_listener" "my_app_http" {
   load_balancer_arn = aws_lb.my_app_launch.arn
   port              = "80"
   protocol          = "HTTP"
-  tags = local.common_tags
+  tags              = local.common_tags
 
-    default_action {
-      type = "redirect"
+  default_action {
+    type = "redirect"
 
-      redirect {
-        port = "443"
-        protocol = "HTTPS"
-        status_code = "HTTP_301"
-      }
+    redirect {
+      port        = "443"
+      protocol    = "HTTPS"
+      status_code = "HTTP_301"
     }
+  }
 }

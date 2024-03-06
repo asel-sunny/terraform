@@ -18,7 +18,7 @@ resource "aws_security_group_rule" "ingress_sg-ec2-alb" {
   protocol                 = "tcp"
   security_group_id        = aws_security_group.sg-ec2.id
   source_security_group_id = aws_security_group.sg-alb.id
-  
+
 
 }
 

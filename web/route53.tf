@@ -8,7 +8,7 @@ resource "aws_route53_record" "site_domain" {
   zone_id = data.aws_route53_zone.hosted_zone.zone_id
   name    = aws_acm_certificate.acm.domain_name
   type    = "A"
-  
+
 
   alias {
     name                   = aws_lb.my_app_launch.dns_name
