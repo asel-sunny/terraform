@@ -8,4 +8,26 @@ module "vpc" {
 }
 
 
+################# Count argument , calling bucket_names variable ######################
+# module "bucket" {
+#   count = length(var.bucket_names)
+#   source = "./publish_bucket"
+#   name = element(var.bucket_names, count.index)
+  
+# }
+
+# variable "bucket_names" {
+#   type = list
+#   default = ["bucket1, bucket2"]
+# }
+
+# ####################### For Each meta argument, calling bucket_names variable ###################
+# module "bucket" {
+#   for_each = var.bucket_names
+#   source = "./publish_bucket"
+#   name = each.key
+# }
+
+
+
 
