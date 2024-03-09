@@ -12,15 +12,22 @@ resource "aws_autoscaling_group" "my_app_launch" {
   #availability_zones = ["us-east-1a", "us-east-1b"]
   launch_template { # you can either specify launch_configuration 
     id = aws_launch_template.my_app_launch.id
+    version = "$Default"
   }
   dynamic "tag" {
     for_each = var.extra_tags
-    content {
+    content {    
       key                 = tag.value.key
       propagate_at_launch = tag.value.propagate_at_launch
-      value               = tag.value.key
+      value               = tag.value.value
     }
 
+  }
+  instance_refresh {
+    strategy = "Rolling"
+    preferences {
+      min_healthy_percentage = 50
+    }
   }
   target_group_arns = [aws_lb_target_group.my_app_launch.arn]
 }
