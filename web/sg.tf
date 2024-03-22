@@ -4,23 +4,23 @@ resource "aws_security_group" "sg-ec2" {
   #vpc_id = aws_default_vpc.default
 }
 
-resource "aws_security_group" "sg-alb" {
-  name = "alb-sg"
-  tags = local.common_tags
-  #vpc_id = aws_default_vpc.default
-}
+# resource "aws_security_group" "sg-alb" {
+#   name = "alb-sg"
+#   tags = local.common_tags
+#   #vpc_id = aws_default_vpc.default
+# }
 
 
-resource "aws_security_group_rule" "ingress_sg-ec2-alb" {
-  type                     = "ingress"
-  from_port                = 80
-  to_port                  = 80
-  protocol                 = "tcp"
-  security_group_id        = aws_security_group.sg-ec2.id
-  source_security_group_id = aws_security_group.sg-alb.id
+# resource "aws_security_group_rule" "ingress_sg-ec2-alb" {
+#   type                     = "ingress"
+#   from_port                = 80
+#   to_port                  = 80
+#   protocol                 = "tcp"
+#   security_group_id        = aws_security_group.sg-ec2.id
+#   source_security_group_id = aws_security_group.sg-alb.id
 
 
-}
+# }
 
 resource "aws_security_group_rule" "egress_sg-ec2" {
   type              = "egress"
