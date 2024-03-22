@@ -56,4 +56,13 @@ variable "instance_type" {
   default = "t2.medium"
 }
 
+variable "domain_name" {
+  type    = string
+  default = "aselicloud.net"
+}
+
+variable "record_name" {
+  type    = string
+  default = "www"
+}
 

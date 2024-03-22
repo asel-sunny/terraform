@@ -6,5 +6,7 @@ resource "aws_instance" "ec2-jenkins" {
   associate_public_ip_address = true
   key_name                    = var.key_name
   user_data                   = file("userdata.sh")
+  iam_instance_profile        = aws_iam_instance_profile.jenkins-profile.name
+  tags                        = local.common_tags
 }
 
